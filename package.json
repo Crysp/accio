@@ -1,11 +1,11 @@
 {
-  "name": "accio",
+  "name": "figet",
   "version": "0.0.1",
-  "repository": "git@github.com:Crysp/accio.git",
-  "author": "Vitaliy Leonov <antiprogs@gmail.com>",
+  "repository": "git@github.com:Crysp/figet.git",
+  "author": "Vitaliy Leonov <just.lyonya@gmail.com>",
   "license": "MIT",
   "bin": {
-    "accio": "bin/accio.js"
+    "figet": "bin/cli.js"
   },
   "dependencies": {
     "@svgr/core": "^5.0.1",
