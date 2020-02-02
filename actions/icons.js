@@ -49,7 +49,7 @@ module.exports = async (config) => {
             axios
                 .get(url, { responseType: 'blob' })
                 .then(({ headers, data }) => svgr(
-                    headers['Content-Length'] > 0 ? data : '<svg />',
+                    headers['content-length'] > 0 ? data : '<svg />',
                     { icon: true, template },
                     { componentName: pascalCase(name) },
                 ))

@@ -4,4 +4,4 @@ node_modules
 icons
 ast.json
 *error.log
-.acciorc
+.figetrc
