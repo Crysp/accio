@@ -2,4 +2,6 @@
 .gitignore
 .figetrc
 .prettierrc
+dist
+*-error.log
 
