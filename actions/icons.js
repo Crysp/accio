@@ -1,3 +1,9 @@
+/**
+ * This file is generated automatically
+ * on date
+ *
+ * Do not edit it directly
+ */
 const fs = require('fs-extra');
 const path = require('path');
 const Figma = require('figma-js');
@@ -6,6 +12,7 @@ const svgr = require('@svgr/core').default;
 const { pascalCase } = require('change-case');
 const chalk = require('chalk');
 const Spinner = require('../helpers/spinner');
+const header = require('../helpers/header');
 
 const template = (
     { template },
@@ -61,13 +68,15 @@ module.exports = async (config) => {
         vectors.forEach(({ name, code }) => (
             fs.outputFileSync(
                 path.join(process.cwd(), config.output.icons, `${pascalCase(name)}.tsx`),
-                code,
+                `${header()}\n\n${code}`,
             )
         ));
 
         fs.outputFileSync(
             path.join(process.cwd(), config.output.icons, 'index.tsx'),
-            vectors.map(({ name }) => `export { default as ${pascalCase(name)} } from './${pascalCase(name)}';`).join('\n'),
+            `${header()}
+
+${vectors.map(({ name }) => `export { default as ${pascalCase(name)} } from './${pascalCase(name)}';`).join('\n')}`,
         );
 
         spin.succeed(`Received ${vectors.length} icons. ${chalk.gray(`Output into "${path.relative(process.cwd(), config.output.icons)}"`)}`);

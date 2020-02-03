@@ -5,6 +5,7 @@ const colorString = require('color-string');
 const { camelCase } = require('change-case');
 const chalk = require('chalk');
 const Spinner = require('../helpers/spinner');
+const header = require('../helpers/header');
 
 const flatten = (arr = []) => arr.reduce((a, b) => ([
     ...a,
@@ -133,7 +134,9 @@ async function tokens(config) {
 
         const jsObject = JSON.stringify({ colors, typography, effects }, null, 4).replace(/"(.*?)":/g, '$1:');
 
-        const result = `const tokens = ${jsObject};
+        const result = `${header()}
+        
+const tokens = ${jsObject};
 
 export { tokens };
 `;
