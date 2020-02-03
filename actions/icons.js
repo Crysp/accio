@@ -65,6 +65,11 @@ module.exports = async (config) => {
             )
         ));
 
+        fs.outputFileSync(
+            path.join(process.cwd(), config.output.icons, 'index.tsx'),
+            vectors.map(({ name }) => `export { default as ${pascalCase(name)} } from './${pascalCase(name)}';`).join('\n'),
+        );
+
         spin.succeed(`Received ${vectors.length} icons. ${chalk.gray(`Output into "${path.relative(process.cwd(), config.output.icons)}"`)}`);
     } catch (e) {
         spin.fail(e.response.data.err);
