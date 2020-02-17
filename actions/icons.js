@@ -64,11 +64,7 @@ module.exports = async (config) => {
                     },
                     { componentName: pascalCase(name) },
                 ))
-                .then(code => {
-                    console.log(name);
-                    console.log(code);
-                    return { id, name, code };
-                })
+                .then(code => ({ id, name, code }))
         ));
 
         const vectors = await Promise.all(downloads);
