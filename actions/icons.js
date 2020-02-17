@@ -57,10 +57,18 @@ module.exports = async (config) => {
                 .get(url, { responseType: 'blob' })
                 .then(({ headers, data }) => svgr(
                     headers['content-length'] > 0 ? data : '<svg />',
-                    { icon: true, template },
+                    {
+                        icon: true,
+                        template,
+                        replaceAttrValues: { black: 'currentColor' },
+                    },
                     { componentName: pascalCase(name) },
                 ))
-                .then(code => ({ id, name, code }))
+                .then(code => {
+                    console.log(name);
+                    console.log(code);
+                    return { id, name, code };
+                })
         ));
 
         const vectors = await Promise.all(downloads);

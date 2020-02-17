@@ -56,15 +56,15 @@ const mapTypography = (children, dictionary) => {
             // textAlignVertical,
             letterSpacing,
             // lineHeightPx,
-            lineHeightPercent,
-            // lineHeightPercentFontSize,
+            // lineHeightPercent,
+            lineHeightPercentFontSize,
             // lineHeightUnit,
         } = layer.style;
 
         return {
             ...style,
             value: {
-                font: `${fontWeight} ${fontSize}px/${lineHeightPercent}% ${fontFamily}`,
+                font: `${fontWeight} ${fontSize}px/${lineHeightPercentFontSize || 100}% ${fontFamily}`,
                 letterSpacing,
             },
         };
