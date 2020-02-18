@@ -80,7 +80,11 @@ module.exports = async (config) => {
             path.join(process.cwd(), config.output.icons, 'index.tsx'),
             `${header()}
 
-${vectors.map(({ name }) => `export { default as ${pascalCase(name)} } from './${pascalCase(name)}';`).join('\n')}`,
+${vectors.map(({ name }) => `import ${pascalCase(name)} from './${pascalCase(name)}';`).join('\n')}
+
+export default {
+${vectors.map(({ name }) => `    ${pascalCase(name)},`).join('\n')}
+};`,
         );
 
         spin.succeed(`Received ${vectors.length} icons. ${chalk.gray(`Output into "${path.relative(process.cwd(), config.output.icons)}"`)}`);
