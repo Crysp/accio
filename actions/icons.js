@@ -37,7 +37,7 @@ module.exports = async (config) => {
         const { data } = await client.fileNodes(config.id, { ids: [config.iconsId] });
         const frame = data.nodes[config.iconsId].document;
         const iconsFrames = frame.children.map(child => {
-            if (child.type !== 'FRAME') return null;
+            if (child.type !== 'COMPONENT') return null;
 
             return child;
         }).filter(Boolean);
@@ -65,6 +65,7 @@ module.exports = async (config) => {
                     { componentName: pascalCase(name) },
                 ))
                 .then(code => ({ id, name, code }))
+                .catch(e => spin.fail(e.message))
         ));
 
         const vectors = await Promise.all(downloads);
