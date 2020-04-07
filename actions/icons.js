@@ -77,14 +77,22 @@ module.exports = async (config) => {
             )
         ));
 
+        const vectorsDedupe = vectors.reduce((list, icon) => {
+            if (list.every(({ name }) => name !== icon.name)) {
+                list.push(icon);
+            }
+
+            return list;
+        }, []);
+
         fs.outputFileSync(
             path.join(process.cwd(), config.output.icons, 'index.tsx'),
             `${header()}
 
-${vectors.map(({ name }) => `import ${pascalCase(name)} from './${pascalCase(name)}';`).join('\n')}
+${vectorsDedupe.map(({ name }) => `import ${pascalCase(name)} from './${pascalCase(name)}';`).join('\n')}
 
 export default {
-${vectors.map(({ name }) => `    ${pascalCase(name)},`).join('\n')}
+${vectorsDedupe.map(({ name }) => `    ${pascalCase(name)},`).join('\n')}
 };`,
         );
 
