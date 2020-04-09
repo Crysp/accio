@@ -15,7 +15,8 @@ const flatten = (arr = []) => arr.reduce((a, b) => ([
 
 const mapColors = (children, dictionary) => {
     const layers = children.filter(({ styles }) => styles && styles.fill);
-    const colors = dictionary.filter(({ styleType }) => styleType === 'FILL');
+    // иногда прилетает стиль которого нет в словаре "#000000"
+    const colors = dictionary.filter(({ name, styleType }) => styleType === 'FILL' && name.indexOf('#') === -1);
     const extendedDictionary = colors.map(style => {
         const layer = layers.find(({ styles }) => styles.fill === style.id);
 
