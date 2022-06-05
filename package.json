@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@svgr/core": "^5.0.1",
-    "axios": "^0.19.1",
+    "axios": "^0.21.2",
     "chalk": "^3.0.0",
     "change-case": "^4.1.1",
     "color-string": "^1.5.5",
